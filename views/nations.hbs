@@ -1,0 +1,68 @@
+<div class="topnav">
+        <img src = "img/header.jpg" width="300" class="right">
+        <a href="/">Home</a>        
+        <a class="active" href="nations">Nations</a>
+        <a href="characters">Characters</a>
+        <a href="authors">Authors</a>
+        <a href="books">Books</a>
+</div>
+    
+<h1>Nations</h1>
+
+<h3>Add Nation</h3>
+
+<form class="entryForms" id="addNationForm">
+    <p>
+        <label for="nationName">Name:</label>
+        <input type="text" id="nationName" name="nationName" size=60>
+    </p>
+    <p>
+        <label for="demonym">Demonym:</label>
+        <input type="text" id="demonym" name="demonym" size=60>
+    </p>
+    <p>
+        <label for="region">Region:</label>
+        <input type="text" id="region" name="region" size=60>
+    </p>
+    <p>
+        <label for="capital">Capital:</label>
+        <input type="text" id="capital" name="capital" size=60>
+    </p>
+    <p>
+        <label for="sigl">Sigil:</label>
+        <input type="text" id="sigil" name="sigil" size=60>
+    </p>
+    <p>
+        <input type="submit">
+    </p>
+</form>
+
+<h3>Browse Nations</h3>
+
+<table id="browseNationsTable">
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr data-value={{this.nationId}}>
+            <td>{{this.nationId}}</td>
+            <td>{{this.name}}</td>
+            <td>{{this.demonym}}</td>
+            <td>{{this.region}}</td>
+            <td>{{this.capital}}</td>
+            <td>{{this.sigil}}</td>
+            <td><button onclick="deleteNation({{this.nationId}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>
+
+<script src="/js/add_nation.js"></script>
+<script src="/js/delete_nation.js"></script>

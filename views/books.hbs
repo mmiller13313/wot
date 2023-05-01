@@ -1,0 +1,67 @@
+<div class="topnav">
+        <img src = "img/header.jpg" width="300" class="right">
+        <a href="/">Home</a>        
+        <a href="nations">Nations</a>
+        <a href="characters">Characters</a>
+        <a href="authors">Authors</a>
+        <a class="active" href="books">Books</a>
+</div>
+    
+<h1>Books</h1>
+
+<h3>Add Book</h3>
+
+<form action="books" method="post" class="entryForms" id="addBooksForm">
+    <p>
+        <label for="title">Title:</label>
+        <input type="text" name="title" id="titleInput">
+    </p>
+    <p>
+        <label for="pubDate">Publication Date:</label>
+        <input type="date" name="pubDate" id="pubDateInput">
+    </p>
+    <p>
+        <label for="length">Length:</label>
+        <input type="number" name="length" id="lengthInput" >
+    </p>
+    <p>
+        <label for="bookNumber">Book Number:</label>
+        <input type="number" id="bookNumberInput" name="bookNumberInput">
+    </p>
+    <p>
+        <input type="submit">
+    </p>
+</form>
+
+<h3>Browse Books</h3>
+
+<table>
+    <tbody id="books_table">
+        <tr>
+            <th>Book ID</th>
+            <th>Title</th>
+            <th>Publication Date</th>
+            <th>Length</th>
+            <th>Book Number</th>
+        </tr>
+
+        {{#each books}}
+        <tr>
+            
+            <td>{{this.bookId}}</td>
+            <td>{{this.title}}</td>
+            <td>{{dateFormat this.pubDate "MM-DD-YYYY"}}</td>
+            <td>{{this.length}}</td>
+            <td>{{this.bookNumber}}</td>
+            <td>
+                <form action="managebooks" method="get">
+                    <button name="bookId" value="{{this.bookId}}" id="manage{{this.bookId}}" type="submit">Manage Relationships</button>
+                </form>   
+            </td>
+        </tr>
+        {{/each}}
+    </tbody>
+</table>   
+<p></p>
+{{!-- Embed script to add a book --}}
+<script src="./js/add_book.js"></script>

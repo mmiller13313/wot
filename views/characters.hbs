@@ -1,0 +1,145 @@
+<div class="topnav">
+        <img src = "img/header.jpg" width="300" class="right">
+        <a href="/">Home</a>        
+        <a href="nations">Nations</a>
+        <a class="active" href="characters">Characters</a>
+        <a href="authors">Authors</a>
+        <a href="books">Books</a>
+</div>
+    
+<h1>Characters</h1>
+
+<h3>Add Character</h3>
+
+<form class="entryForms" id="addCharacterForm">
+    <p>
+        <label for="fName">First Name:</label>
+        <input type="text" id="fName" name="fName">
+    </p>
+    <p>
+        <label for="mName">Middle Name:</label>
+        <input type="text" id="mName" name="mName">
+    </p>
+    <p>
+        <label for="lName">Last Name:</label>
+        <input type="text" id="lName" name="lName">
+    </p>
+    <p>
+        <label for="suffix">Suffix:</label>
+        <input type="text" id="suffix" name="suffix">
+    </p>
+    <p>
+        <label for="gender">Gender:</label>
+        <select name="gender" id="gender">
+            <option value="">Select a Gender</option>
+            <option value="M">Male</option>
+            <option value="F">Female</option>
+        </select>
+    <p>
+        <label for="firstAppeared">First Book Appearance:</label>
+        <select name="firstAppeared" id="firstAppeared">
+            <option value="">Select a Book</option>
+            {{#each dataB}}
+            <option value="{{this.bookId}}">{{this.title}}</option>
+            {{/each}}
+        </select>
+    </p>
+    <p>
+        <label for="nationality">Nationality:</label>
+        <select name="nationality" id="nationality">
+            <option value="">Select a Nationality</option>
+            {{#each nations}}
+            <option value="{{this.nationId}}">{{this.demonym}}</option>
+            {{/each}}
+        </select>
+    </p>
+    <p>
+        <input type="submit">
+    </p>
+</form>
+
+
+
+<h3>Update a Character's Nationality</h3>
+
+<p>To update a specific Character's Nationality, select their name from the drop-down menu on the left and the desired Nationality from the drop-down menu on the right</p>
+
+<form id="update-character-form-ajax">
+    <label for="input-name">Name: </label>
+    <select name="input-name" id="mySelect">
+        <option value="test">Select a Character</option>
+        {{#each dataC}}
+        <option value="{{this.characterId}}">{{this.fName}} {{this.lName}}</option>
+        {{/each}}
+    </select>
+
+    <label for"input-nationality">Nationality: </label>
+    <select name="input-nationality" id="input-nationality-update">
+        <option>Select a Nationality</option>
+        <option value="">None</option>
+        {{#each nations}}
+        <option value="{{this.nationId}}">{{this.demonym}}</option>
+        {{/each}}
+    </select>
+    <input type="submit">
+</form>
+
+
+
+<h3>Character Search</h3>
+
+<p>Select a Character to see all books in which the Character makes an appearance.
+
+<form id="search-character-form-ajax">
+    <label for="input-name">Name: </label>
+    <select name="input-name" id="charSelect">
+        <option value="test">Select a Character</option>
+        {{#each dataC}}
+        <option value="{{this.characterId}}">{{this.fName}} {{this.lName}}</option>
+        {{/each}}
+    </select>
+    <input type="submit">
+</form>
+
+<ul id="booksList"></ul>
+
+
+
+<h3>Browse Characters</h3>
+
+<table id="browseCharactersTable">
+    <thead>
+        <tr>
+            {{#each dataC.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#each dataC}}
+        <tr data-value={{this.characterId}}>
+            <td>{{this.characterId}}</td>
+            <td>{{this.fName}}</td>
+            <td>{{this.mName}}</td>
+            <td>{{this.lName}}</td>
+            <td>{{this.suffix}}</td>
+            <td>{{this.gender}}</td>
+            <td>{{this.firstAppeared}}</td>
+            <td>{{this.nationality}}</td>
+            <td><button onclick="deleteCharacter({{this.characterId}})">Delete</button></td>
+        </tr>
+        {{/each}}
+    </tbody>           
+</table>  
+
+
+
+<script src="/js/add_character.js"></script>
+
+<script src="/js/delete_character.js"></script>
+
+<script src="/js/update_character.js"></script>
+
+<script src="/js/search_character.js"></script>

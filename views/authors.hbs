@@ -1,0 +1,109 @@
+<div class="topnav">
+        <img src = "img/header.jpg" width="300" class="right">
+        <a href="/">Home</a>        
+        <a href="nations">Nations</a>
+        <a href="characters">Characters</a>
+        <a class="active" href="authors">Authors</a>
+        <a href="books">Books</a>
+</div>
+
+<h1>Authors</h1>
+<h3>Add Author</h3>
+
+<form class="entryForms" id="addAuthorForm">
+    <p>
+        <label for="fName">First Name:</label>
+        <input type="text" id="fName" name="fName">
+    </p>
+    <p>
+        <label for="mName">Middle Name:</label>
+        <input type="text" id="mName" name="mName">
+    </p>
+    <p>
+        <label for="lName">Last Name:</label>
+        <input type="text" id="lName" name="lName">
+    </p>
+    <p>
+        <label for="suffix">Suffix:</label>
+        <input type="text" id="suffix" name="suffix">
+    </p>
+    <p>
+        <label for="penName">Pen Name:</label>
+        <input type="text" id="penName" name="penName">
+    </p>
+    <p>
+        <label for="birth">Birth:</label>
+        <input type="date" id="birth" name="birth">
+    </p>
+    <p>
+        <label for="death">Death:</label>
+        <input type="date" id="death" name="death">
+        <label for="death">If N/A, check box:</label>
+        <input type="checkbox" id="death" name="death" value is Null>
+    </p>
+    <p>
+        <input type="submit">
+    </p>
+</form>
+
+<h3>Browse Authors</h3>
+<table id="browseAuthorTable">
+    <thead>
+        <tr>
+            {{#each data.[0]}}
+            <th>
+                {{@key}}
+            </th>
+            {{/each}}
+        </tr>
+    </thead>
+    <tbody>
+        {{#each data}}
+        <tr data-value={{this.authorId}}>
+            
+            <td>{{this.authorId}}</td>
+            <td>{{this.fName}}</td>
+            <td>{{this.mName}}</td>
+            <td>{{this.lName}}</td>
+            <td>{{this.suffix}}</td>
+            <td>{{this.penName}}</td>
+            <td>{{dateFormat this.birth "MM-DD-YYYY"}}</td>
+            <td>{{this.death}}</td>
+            <td><button onclick="deleteAuthor({{this.authorId}})">Delete</button></td>
+   
+        </tr>
+        {{/each}}
+    </tbody>
+</table>   
+
+{{!-- <h2>Updating A User's HomeWorld Form</h2>
+<p>To update a specific user's homeworld select their name from the drop-down menu on the left and their desired homeworld from the drop down menu on the right</p>
+<form id="update-author-form-ajax">
+
+    <label for="input-fullname">Full name: </label>
+    <select name="input-fullname" id="mySelect">
+        <option value="test">Select a Person</option>
+        {{#each data}}
+        <option value="{{this.authorId}}">{{this.fname}} {{this.lname}}</option>
+        {{/each}}
+    </select>
+
+    <label for="input-homeworld">Homeworld: </label>
+    <select name="input-homeworld" id="input-homeworld-update">
+        <option>Select a Planet</option>
+        {{#each planets}}
+        <option value="{{this.id}}">{{this.name}}</option>
+        {{/each}}
+    </select>
+    <input type="submit">
+
+</form> --}}
+
+
+
+<p></p>
+{{!-- Embed script to add a book --}}
+<script src="./js/add_author.js"></script>
+<script src="./js/delete_author.js"></script>
+{{!-- <script src="./js/update_author.js"></script> --}}
+
